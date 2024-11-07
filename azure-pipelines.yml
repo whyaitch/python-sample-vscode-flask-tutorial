@@ -4,87 +4,18 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-stages:
-- stage: Test_Python38
-  displayName: Test with Python 3.8
-  jobs:
-  - job: Test
-    displayName: Test with Python 3.8
-    steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '3.8'
-      displayName: 'Use Python 3.8'
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.9'
+  displayName: 'Use Python 3.9'
 
-    - script: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-      displayName: 'Install dependencies'
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
 
-    - script: |
-        pip install pytest pytest-azurepipelines
-        pytest
-      displayName: 'Run tests'
-
-- stage: Test_Python39
-  displayName: Test with Python 3.9
-  jobs:
-  - job: Test
-    displayName: Test with Python 3.9
-    steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '3.9'
-      displayName: 'Use Python 3.9'
-
-    - script: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-      displayName: 'Install dependencies'
-
-    - script: |
-        pip install pytest pytest-azurepipelines
-        pytest
-      displayName: 'Run tests'
-
-- stage: Test_Python310
-  displayName: Test with Python 3.10
-  jobs:
-  - job: Test
-    displayName: Test with Python 3.10
-    steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '3.10'
-      displayName: 'Use Python 3.10'
-
-    - script: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-      displayName: 'Install dependencies'
-
-    - script: |
-        pip install pytest pytest-azurepipelines
-        pytest
-      displayName: 'Run tests'
-
-- stage: Test_Python311
-  displayName: Test with Python 3.11
-  jobs:
-  - job: Test
-    displayName: Test with Python 3.11
-    steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '3.11'
-      displayName: 'Use Python 3.11'
-
-    - script: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-      displayName: 'Install dependencies'
-
-    - script: |
-        pip install pytest pytest-azurepipelines
-        pytest
-      displayName: 'Run tests'
+- script: |
+    pip install pytest pytest-azurepipelines
+    pytest
+  displayName: 'Run tests'
